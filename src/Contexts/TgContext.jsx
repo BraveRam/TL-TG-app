@@ -23,6 +23,7 @@ export function TgProvider({children}){
         const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate-initdata", { initData })
         if(response.status === 200){
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })
+          alert(JSON.stringify(membership))
           if(membership.status === 200){
              alert("member")
              dispatch({type: "ENABLE_ACCESS"})
