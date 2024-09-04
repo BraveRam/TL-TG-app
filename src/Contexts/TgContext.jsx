@@ -4,62 +4,53 @@ import axios from "axios";
 
 const TgContext = createContext();
 
-export function TgProvider({children}) {
+export function TgProvider({children}){
   const [state, dispatch] = useReducer(tgReducer, {
     isInitialized: false,
     hasAccess: false,
-    TG: window.Telegram?.WebApp || ""  // Assign window.Telegram.WebApp directly to state
-  });
-
-  useEffect(() => {
-    const tg = state.TG;
-    tg.expand();
-    if (tg) {
-      const initialize = () => {
-        if (tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user) {         
-          dispatch({ type: "SET_IS_INITIALIZED" });
-
-          const userId = tg.initDataUnsafe.user.id;
-          
-          axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate", { initData: tg.initData })
-            .then(response => {
-              if (response.status === 200) {
-                return axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId });
-              } else {
-                dispatch({ type: "DISABLE_ACCESS" });
-                throw new Error("Invalid data");
-              }
-            })
-            .then(membership => {
-              if (membership.status === 200) {
-                dispatch({ type: "ENABLE_ACCESS" });
-              } else {
-                dispatch({ type: "DISABLE_ACCESS" });
-              }
-            })
-            .catch(() => {
-              dispatch({ type: "DISABLE_ACCESS" });
-            });
-        } else {
-          dispatch({ type: "DISABLE_ACCESS" });
-          dispatch({ type: "UNSET_IS_INITIALIZED" });
+    TG: window.Telegram?.WebApp || ""
+  })
+  
+  useEffect(()=>{
+    const tg = state.TG
+    
+    const initialize = async()=>{
+      if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
+        dispatch({type: "DISPATCH_TG", payload: window.Telegram.WebApp})
+        dispatch({type: "SET_IS_INITIALIZED"})
+        const userId = tg.initDataUnsafe.user.id;
+        const initData = tg.initData;
+        tg.expand()
+        const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate", { initData })
+        alert(JSON.stringify(response))
+        if(response.status === 200){
+          const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
+          if(membership.status === 200){
+             alert("member")
+             dispatch({type: "ENABLE_ACCESS"})
+          } else{
+            alert("invalid data")
+            dispatch({type: "DISABLE_ACCESS"})
+          }
+        } else{
+          dispatch({type: "DISABLE_ACCESS"})
         }
-      };
-      
-      initialize();
-    } else {
-      dispatch({ type: "DISABLE_ACCESS" });
-      dispatch({ type: "UNSET_IS_INITIALIZED" });
+      } else {
+        dispatch({type: "DISABLE_ACCESS"})
+        dispatch({type: "UNSET_IS_INITIALIZED"})
+      }
     }
-  }, [state.TG]);
-
+    initialize();
+  }, [])
+  
+  
   return (
-    <TgContext.Provider value={{ state, dispatch }}>
+     <TgContext.Provider value={{state, dispatch}}>
       {children}
-    </TgContext.Provider>
-  );
+     </TgContext.Provider>
+    )
 }
 
-export function useTgContext() {
-  return useContext(TgContext);
+export function useTgContext(){
+  return useContext(TgContext)
 }
