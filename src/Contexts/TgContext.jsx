@@ -31,8 +31,8 @@ export function TgProvider({children}){
           dispatch({type: "DISABLE_ACCESS"})
         }
       } else {
-        dispatch({type: "DISABLE_ACCESS"})
-        dispatch({type: "UNSET_IS_INITIALIZED"})
+        dispatch({type: "ENABLE_ACCESS"})
+        dispatch({type: "SET_IS_INITIALIZED"})
       }
     }
     initialize();
