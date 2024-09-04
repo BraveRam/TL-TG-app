@@ -19,9 +19,9 @@ export function TgProvider({children}){
         dispatch({type: "SET_IS_INITIALIZED"})
         const userId = tg.initDataUnsafe.user.id;
         const initData = tg.initData;
-        const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/validate-initdata", { initData })
+        const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate-initdata", { initData })
         if(response.status === 200){
-          const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/check-membership", { userId })
+          const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })
           if(membership.status === 200){
              dispatch({type: "ENABLE_ACCESS"})
           } else{
