@@ -13,6 +13,7 @@ export function TgProvider({children}){
   useEffect(()=>{
     const tg = window.Telegram ? window.Telegram.WebApp : "";
     alert(tg)
+    alert("hmm")
     const initialize = async()=>{
       if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
         alert("hi")
