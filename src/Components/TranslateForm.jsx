@@ -14,7 +14,7 @@ export function TranslateForm() {
     
       try {
         dispatch({ type: "SET_PROCESS" });
-        const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/translate", { lang, text });
+        const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/translate", { lang, text });
     
         if (response.status === 200) {
           dispatch({ type: "SET_TRANSLATED_TEXT", payload: response.data.message });
