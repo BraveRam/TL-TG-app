@@ -21,7 +21,7 @@ export function TgProvider({children}){
         const initData = tg.initData;
         tg.expand()
         const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate", { initData })
-        alert(JSON.stringify(response.data))
+        alert(JSON.stringify(response.status === 200))
         if(response.status === 200){
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
           if(membership.status === 200){
