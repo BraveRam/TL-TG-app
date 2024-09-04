@@ -14,6 +14,7 @@ export function TgProvider({children}){
     const tg = window.Telegram ? window.Telegram.WebApp : "";
     const initialize = async()=>{
       if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
+        alert("hi")
         dispatch({type: "DISPATCH_TG", payload: window.Telegram.WebApp})
         dispatch({type: "SET_IS_INITIALIZED"})
         const userId = tg.initDataUnsafe.user.id;
