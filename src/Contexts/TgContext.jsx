@@ -21,13 +21,14 @@ export function TgProvider({children}){
         const userId = tg.initDataUnsafe.user.id;
         const initData = tg.initData;
         const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate-initdata", { initData })
+        alert(JSON.stringify(response))
         if(response.status === 200){
-          const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })
-          alert(JSON.stringify(membership))
+          const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
           if(membership.status === 200){
              alert("member")
              dispatch({type: "ENABLE_ACCESS"})
           } else{
+            alert("invalid data")
             dispatch({type: "DISABLE_ACCESS"})
           }
         } else{
