@@ -15,14 +15,13 @@ export function TgProvider({children}){
     const tg = state.TG
     
     const initialize = async()=>{
-      if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
-        dispatch({type: "DISPATCH_TG", payload: window.Telegram.WebApp})
+      if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){  
         dispatch({type: "SET_IS_INITIALIZED"})
         const userId = tg.initDataUnsafe.user.id;
         const initData = tg.initData;
         tg.expand()
         const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate", { initData })
-        alert(JSON.stringify(response))
+        alert(JSON.stringify(response.data))
         if(response.status === 200){
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
           if(membership.status === 200){
