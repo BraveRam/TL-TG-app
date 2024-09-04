@@ -12,6 +12,7 @@ export function TgProvider({children}){
   
   useEffect(()=>{
     const tg = window.Telegram ? window.Telegram.WebApp : "";
+    alert(tg)
     const initialize = async()=>{
       if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
         alert("hi")
@@ -31,7 +32,6 @@ export function TgProvider({children}){
           dispatch({type: "DISABLE_ACCESS"})
         }
       } else {
-        alert("lol")
         dispatch({type: "DISABLE_ACCESS"})
         dispatch({type: "UNSET_IS_INITIALIZED"})
       }
