@@ -12,17 +12,16 @@ export function TgProvider({children}){
   
   useEffect(()=>{
     const tg = window.Telegram ? window.Telegram.WebApp : "";
-    alert(JSON.stringify(tg.initData))
+    
     const initialize = async()=>{
       if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
-        alert("hi")
         dispatch({type: "DISPATCH_TG", payload: window.Telegram.WebApp})
         dispatch({type: "SET_IS_INITIALIZED"})
         const userId = tg.initDataUnsafe.user.id;
         const initData = tg.initData;
-        alert(userId)
+        tg.expand()
         const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate-initdata", { initData })
-        
+        alert(JSON.stringify(response))
         if(response.status === 200){
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
           if(membership.status === 200){
