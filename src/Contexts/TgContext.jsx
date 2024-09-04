@@ -13,7 +13,7 @@ export function TgProvider({children}) {
 
   useEffect(() => {
     const tg = state.TG;
-    
+    tg.expand();
     if (tg) {
       const initialize = () => {
         if (tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user) {         
