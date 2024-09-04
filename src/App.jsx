@@ -16,7 +16,7 @@ function App(){
     } else{
       return (
         <>
-        {state.TG.showAlert("Join the channel")}
+        {/*state.TG?.showAlert("Join the channel")*/}
         <h1 className="">Join Channel</h1>
         </>
         )
