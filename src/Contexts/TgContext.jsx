@@ -12,8 +12,7 @@ export function TgProvider({children}){
   
   useEffect(()=>{
     const tg = window.Telegram ? window.Telegram.WebApp : "";
-    alert(tg)
-    alert("hmm")
+    alert(JSON.stringify(tg.initData))
     const initialize = async()=>{
       if(tg.initData && tg.initDataUnsafe && tg.initDataUnsafe.user){
         alert("hi")
@@ -25,6 +24,7 @@ export function TgProvider({children}){
         if(response.status === 200){
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })
           if(membership.status === 200){
+             alert("member")
              dispatch({type: "ENABLE_ACCESS"})
           } else{
             dispatch({type: "DISABLE_ACCESS"})
