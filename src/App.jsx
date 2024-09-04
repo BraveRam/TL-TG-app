@@ -22,7 +22,7 @@ function App(){
         )
     }
   } else{
-    return <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">Open the bot in Telegram</h1>
+    return <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">Open the bot in Telegram!</h1>
   }
 }
 
