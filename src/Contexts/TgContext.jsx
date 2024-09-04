@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { tgReducer } from "./TgReducer";
-import axios from "axios
+import axios from "axios";
 
 const TgContext = createContext();
 
