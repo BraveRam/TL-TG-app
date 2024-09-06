@@ -2,6 +2,7 @@ import { Router } from "./Routes/Routes";
 import { Navbar } from "./Components/Navbar";
 import { AppProvider } from "./Contexts/AppContext";
 import { useTgContext } from "./Contexts/TgContext";
+import { Link } from "react-router-dom";
 
 function App(){
   const { state, dispatch } = useTgContext();
