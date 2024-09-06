@@ -26,11 +26,11 @@ export function TgProvider({children}){
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
           if(membership.status === 200){             
              dispatch({type: "ENABLE_ACCESS"})
-          } else{
-            alert("Invalid bot!")
+          } else{            
             dispatch({type: "DISABLE_ACCESS"})
           }
         } else{
+          tg.showAlert("Invalid bot!")
           dispatch({type: "DISABLE_ACCESS"})
         }
       } else {
