@@ -16,14 +16,17 @@ function App(){
   )
     } else{
       return (
-        <>
-        {/*state.TG?.showAlert("Join the channel")*/}
-        <h1 className="">Join Channel</h1>
-        </>
+        <div className="mx-auto block">
+          <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">🤖Bot kana fayyadamuuf #channel keenya #Join gochuu qabdu👇</h1>
+          <Link className="text-center py-2 px-4 rounded bg-blue-500 text-white mt-3" to="https://t.me/Oro_Tech_Tipz">JOIN CHANNEL</Link>
+    </div>
         )
     }
   } else{
-    return <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">Open the bot in Telegram</h1>
+    return <div className="mx-auto block">
+        <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">Open the bot in Telegram</h1>
+        <Link className="text-center py-2 px-4 rounded bg-blue-500 text-white mt-3" to="https://t.me/OromoTranslatorBot">CLICK HERE</Link>
+    </div>
   }
 }
 
