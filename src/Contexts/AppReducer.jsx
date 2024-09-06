@@ -41,7 +41,8 @@ export const appReducer = (state, action)=>{
             id: Date.now(),
             lang: state.lang,
             to: action.payload.to,
-            from: action.payload.from
+            from: action.payload.from,
+            date: new Date().toLocaleDateString()
           }
         ]
       };
