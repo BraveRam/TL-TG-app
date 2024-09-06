@@ -23,6 +23,7 @@ export function TgProvider({children}){
         const response = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/validate", { initData })
         if(response.status === 200){
           tg.expand()
+          tg.showAlert("Welcome")
           const membership = await axios.post("https://tg-tl-mini-app-api.vercel.app/api/check-membership", { userId })       
           if(membership.status === 200){             
              dispatch({type: "ENABLE_ACCESS"})
@@ -30,7 +31,7 @@ export function TgProvider({children}){
             dispatch({type: "DISABLE_ACCESS"})
           }
         } else{
-          tg.showAlert("Invalid bot!")
+          alert("Invalid bot!\nGo to @OromoTranslatorBot")
           dispatch({type: "DISABLE_ACCESS"})
         }
       } else {
