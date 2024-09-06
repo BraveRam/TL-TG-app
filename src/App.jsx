@@ -17,7 +17,7 @@ function App(){
     } else{
       return (
         <div className="mx-auto block w-[330px]">
-          <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">🤖Bot kana fayyadamuuf #channel keenya #Join gochuu qabdu👇</h1>
+          <h1 className="text-center text-2xl mt-5 font-extrabold text-red-500">🤖Bot kana fayyadamuuf #channel keenya #Join gochuu qabdu! San booda #page kana #reload ykn cufaa banaa👇</h1>
           <Link className="text-center mx-auto block py-2 px-4 rounded bg-blue-500 text-white mt-3" to="https://t.me/Oro_Tech_Tipz">JOIN CHANNEL</Link>
     </div>
         )
